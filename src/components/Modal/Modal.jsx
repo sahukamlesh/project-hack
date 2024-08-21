@@ -24,12 +24,6 @@ const Modal = ({ isOpen, onClose, card }) => {
             <span className="font-semibold">Infy Points:</span> {card.points}
           </p>
         </div>
-        <div className="mt-6">
-          <input type="checkbox" id="terms" className="mr-2" />
-          <label htmlFor="terms" className="text-sm">
-            I understand and accept the terms.
-          </label>
-        </div>
         <div className="mt-4 flex justify-end">
           <button
             className="bg-gray-700 text-white py-2 px-4 rounded hover:bg-gray-600"

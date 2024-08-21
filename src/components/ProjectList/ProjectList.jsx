@@ -1,34 +1,31 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import Card from "../Card/Card";
 import SearchBar from "../SearchBar/SearchBar";
 import cardsData from "../../cardData.json";
+import AppliedProject from "../AppliedProjects/AppliedProjects";
 
 const ProjectList = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("ALL");
   const [applied, setApplied] = useState(false);
-  const cardRef = useRef(null);
 
   const handleStatusChange = (status) => {
     setStatusFilter(status);
+    setApplied(false); 
+  };
+
+  const handleSearchQueryChange = (query) => {
+    setSearchQuery(query);
+    setApplied(false); 
   };
 
   const handleClickAppliedProject = () => {
     setApplied(true);
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (cardRef.current && !cardRef.current.contains(event.target)) {
-        setApplied(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [cardRef]);
+  const handleCloseAppliedProject = () => {
+    setApplied(false);
+  };
 
   const filteredCards = cardsData.filter(
     (card) =>
@@ -44,7 +41,7 @@ const ProjectList = () => {
         <div className="flex-1 ml-[10%]">
           <SearchBar
             searchQuery={searchQuery}
-            setSearchQuery={setSearchQuery}
+            setSearchQuery={handleSearchQueryChange} 
           />
         </div>
 
@@ -103,17 +100,7 @@ const ProjectList = () => {
       </div>
 
       {applied ? (
-        <div className="flex justify-center items-center h-48" ref={cardRef}>
-          <div className="text-center bg-gray-100 p-6 rounded-lg shadow-md">
-            <h2 className="text-lg font-semibold text-blue-700">
-              You've applied to this project!
-            </h2>
-            <p className="text-gray-700 mt-2">
-              Thank you for applying. We will review your application and get
-              back to you soon.
-            </p>
-          </div>
-        </div>
+        <AppliedProject onClose={handleCloseAppliedProject} />
       ) : filteredCards.length > 0 ? (
         filteredCards.map((card, index) => <Card key={index} card={card} />)
       ) : (
