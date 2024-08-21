@@ -1,0 +1,90 @@
+[
+    {
+        "title": "Chatbot Development with Dialogflow",
+        "description": "Create a conversational chatbot using Dialogflow",
+        "createdBy": "frank.miller",
+        "estimatedHours": 140,
+        "category": "Chatbot",
+        "initiative": "AI Integration",
+        "skills": "Dialogflow+Node.js",
+        "points": 3300,
+        "status": "OPEN"
+    },
+    {
+        "title": "Serverless Architecture with AWS Lambda",
+        "description": "Build a serverless application using AWS Lambda",
+        "createdBy": "grace.taylor",
+        "estimatedHours": 110,
+        "category": "Cloud Computing",
+        "initiative": "Infrastructure",
+        "skills": "AWS Lambda+API Gateway",
+        "points": 3100,
+        "status": "IN PROGRESS"
+    },
+    {
+        "title": "Automated Testing with Selenium",
+        "description": "Implement automated testing scripts using Selenium",
+        "createdBy": "henry.martin",
+        "estimatedHours": 130,
+        "category": "Testing",
+        "initiative": "Quality Assurance",
+        "skills": "Selenium+Java",
+        "points": 2900,
+        "status": "CLOSED"
+    },
+    {
+        "title": "GraphQL API Development",
+        "description": "Develop a GraphQL API for data querying",
+        "createdBy": "isabella.garcia",
+        "estimatedHours": 160,
+        "category": "API Development",
+        "initiative": "Data Management",
+        "skills": "GraphQL+Node.js",
+        "points": 3400,
+        "status": "OPEN"
+    },
+    {
+        "title": "Real-time Analytics Dashboard",
+        "description": "Build a real-time analytics dashboard using WebSockets",
+        "createdBy": "jackson.johnson",
+        "estimatedHours": 170,
+        "category": "Analytics",
+        "initiative": "Data Insights",
+        "skills": "WebSockets+React",
+        "points": 3600,
+        "status": "IN PROGRESS"
+    },
+    {
+        "title": "Content Management System with Laravel",
+        "description": "Develop a CMS using Laravel for content management",
+        "createdBy": "karen.lee",
+        "estimatedHours": 200,
+        "category": "Web Development",
+        "initiative": "Content Solutions",
+        "skills": "Laravel+PHP",
+        "points": 4200,
+        "status": "OPEN"
+    },
+    {
+        "title": "API Rate Limiting Solution",
+        "description": "Implement rate limiting for APIs to prevent abuse",
+        "createdBy": "liam.wilson",
+        "estimatedHours": 90,
+        "category": "API Security",
+        "initiative": "Security Enhancements",
+        "skills": "Redis+Node.js",
+        "points": 2700,
+        "status": "CLOSED"
+    },
+    {
+        "title": "Interactive Map with Leaflet.js",
+        "description": "Create an interactive map application using Leaflet.js",
+        "createdBy": "maria.morris",
+        "estimatedHours": 130,
+        "category": "Geospatial",
+        "initiative": "Mapping Solutions",
+        "skills": "Leaflet.js+JavaScript",
+        "points": 3100,
+        "status": "IN PROGRESS"
+    }
+]
