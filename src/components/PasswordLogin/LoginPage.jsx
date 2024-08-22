@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Route,Routes } from "react-router-dom";
 import RegisterPage from "./RegisterPage";
 import Home from "./Home";
-// import AppliedProjects from "../AppliedProjects/AppliedProjects";
+import AdminDashboard from "../AdminDashboard/AdminDashBoard";
 
 const LoginPage = () => {
   return (
@@ -11,7 +11,7 @@ const LoginPage = () => {
         <Routes>
             <Route  path="/" element={<RegisterPage/>}/>
             <Route  path="/home" element={<Home/>}/>
-            {/* <Route path="/applied-projects" element={<AppliedProjects />} /> */}
+            <Route path="/admin" element={<AdminDashboard />} />
         </Routes>
 
       </div>

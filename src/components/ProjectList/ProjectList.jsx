@@ -1,23 +1,27 @@
-import React, { useState } from "react";
-import Card from "../Card/Card";
-import SearchBar from "../SearchBar/SearchBar";
-import cardsData from "../../cardData.json";
-import AppliedProject from "../AppliedProjects/AppliedProjects";
+import React, { useState } from 'react';
+import { db } from '../../firebase';
+import { collection, addDoc } from 'firebase/firestore';
+import Card from '../Card/Card';
+import SearchBar from '../SearchBar/SearchBar';
+import cardsData from '../../cardData.json';
+import AppliedProject from '../AppliedProjects/AppliedProjects';
+import { useAuth } from '../../AuthContext';
 
 const ProjectList = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [statusFilter, setStatusFilter] = useState("ALL");
+  const [searchQuery, setSearchQuery] = useState('');
+  const [statusFilter, setStatusFilter] = useState('ALL');
   const [applied, setApplied] = useState(false);
   const [appliedRoles, setAppliedRoles] = useState([]);
-
+  const { user } = useAuth();
+  console.log('userName',user)
   const handleStatusChange = (status) => {
     setStatusFilter(status);
-    setApplied(false); 
+    setApplied(false);
   };
 
   const handleSearchQueryChange = (query) => {
     setSearchQuery(query);
-    setApplied(false); 
+    setApplied(false);
   };
 
   const handleClickAppliedProject = () => {
@@ -28,8 +32,27 @@ const ProjectList = () => {
     setApplied(false);
   };
 
-  const handleConfirmApply = (appliedCard) => {
-    setAppliedRoles((prevRoles) => [...prevRoles, appliedCard]);
+  const handleConfirmApply = async (appliedCard) => {
+    try {
+      setAppliedRoles(prevRoles => [...prevRoles, appliedCard]);
+       // Get the auth object from the useAuth hook
+      
+      if (!user) {
+        throw new Error('User not authenticated');
+      }
+      // Save the applied project to Firestore
+      await addDoc(collection(db, 'applications'), {
+        title: appliedCard.title,
+        estimatedHours: appliedCard.estimatedHours,
+        skills: appliedCard.skills,
+        points: appliedCard.points,
+        userId: user.uid, // Use the actual user ID from the auth context
+        status: 'PENDING'
+      });
+      // Update local state to reflect applied projects
+    } catch (error) {
+      console.error('Error saving applied project:', error);
+    }
   };
 
   const filteredCards = cardsData.filter(
@@ -73,21 +96,21 @@ const ProjectList = () => {
           </div>
           <div
             className={`flex items-center justify-center w-10 h-10 rounded-full cursor-pointer text-sm ${
-              statusFilter === "IN PROGRESS"
-                ? "bg-blue-500 text-white"
-                : "bg-gray-200 text-gray-700"
+              statusFilter === 'IN PROGRESS'
+                ? 'bg-blue-500 text-white'
+                : 'bg-gray-200 text-gray-700'
             }`}
-            onClick={() => handleStatusChange("IN PROGRESS")}
+            onClick={() => handleStatusChange('IN PROGRESS')}
           >
             In-progress
           </div>
           <div
             className={`flex items-center justify-center w-10 h-10 rounded-full cursor-pointer text-sm ${
-              statusFilter === "ALL"
-                ? "bg-blue-500 text-white"
-                : "bg-gray-200 text-gray-700"
+              statusFilter === 'ALL'
+                ? 'bg-blue-500 text-white'
+                : 'bg-gray-200 text-gray-700'
             }`}
-            onClick={() => handleStatusChange("ALL")}
+            onClick={() => handleStatusChange('ALL')}
           >
             All
           </div>

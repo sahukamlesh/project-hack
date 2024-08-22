@@ -5,33 +5,33 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import "./RegisterPage.css";
-import { setDoc, doc,getDoc } from "firebase/firestore";
+import { setDoc, doc, getDoc } from "firebase/firestore";
 import { useAuth } from "../../AuthContext";
- {/* Register and login Screen  */}
+import "./RegisterPage.css";
 
 const RegisterPage = () => {
   const [login, setLogin] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const history = useNavigate();
   const { setUserName } = useAuth();
-  
+
   const handleSubmit = async (e, type) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
     const name = e.target.name?.value;
-  
+
     try {
       setIsLoading(true);
       if (type === "signup") {
         await createUserWithEmailAndPassword(auth, email, password);
         const user = auth.currentUser;
-  
+
         if (user) {
           await setDoc(doc(db, "users", user.uid), {
             email: user.email,
             displayName: name,
+            isAdmin: false, // Default to false, set true if needed
           });
           setUserName(name);
           history("/home");
@@ -39,14 +39,19 @@ const RegisterPage = () => {
       } else {
         await signInWithEmailAndPassword(auth, email, password);
         const user = auth.currentUser;
-  
+
         if (user) {
           const userDoc = await getDoc(doc(db, "users", user.uid));
           if (userDoc.exists()) {
-            setUserName(userDoc.data().displayName);
+            const userData = userDoc.data();
+            setUserName(userData.displayName);
+            if (userData.isAdmin) {
+              history("/admin"); // Redirect to admin dashboard if admin
+            } else {
+              history("/home");
+            }
           }
         }
-        history("/home");
       }
     } catch (error) {
       console.log(error.message);
@@ -54,18 +59,18 @@ const RegisterPage = () => {
       setIsLoading(false);
     }
   };
-  
+
   return (
     <div>
       <div className="row">
         <div
-          className={login == false ? "activeColor" : "pointer"}
+          className={login === false ? "activeColor" : "pointer"}
           onClick={() => setLogin(false)}
         >
           Signup
         </div>
         <div
-          className={login == true ? "activeColor" : "pointer"}
+          className={login === true ? "activeColor" : "pointer"}
           onClick={() => setLogin(true)}
         >
           SignIn
@@ -79,22 +84,20 @@ const RegisterPage = () => {
         ) : (
           <form onSubmit={(e) => handleSubmit(e, login ? "signin" : "signup")}>
             <div>
-              {login == false ? (
-                <input type="text" name="name" placeholder="Enter you name " />
-              ) : (
-                ""
+              {!login && (
+                <input type="text" name="name" placeholder="Enter your name " />
               )}
             </div>
-            <input type="email" name="email" placeholder="Enter Your Email " />{" "}
+            <input type="email" name="email" placeholder="Enter Your Email " />
             <br />
             <input
               type="password"
               name="password"
               placeholder="Enter Your Password"
-              autocomplete="on"
+              autoComplete="on"
             />
             <br />
-            <button> {login ? "signIn" : "signUp"}</button>
+            <button>{login ? "SignIn" : "SignUp"}</button>
           </form>
         )}
       </div>

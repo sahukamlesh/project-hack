@@ -18,7 +18,6 @@ const Home = () => {
         <Navbar/>
         <button onClick={handleClick}>SignOut</button>
       </div>
-        {/* <Card/> */}
         <ProjectList/>
     </div>
   )
