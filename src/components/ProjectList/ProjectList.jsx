@@ -4,7 +4,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import cardsData from "../../cardData.json";
 import AppliedProject from "../AppliedProjects/AppliedProjects";
 
-const ProjectList = ({card}) => {
+const ProjectList = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("ALL");
   const [applied, setApplied] = useState(false);
@@ -26,6 +26,10 @@ const ProjectList = ({card}) => {
 
   const handleCloseAppliedProject = () => {
     setApplied(false);
+  };
+
+  const handleConfirmApply = (appliedCard) => {
+    setAppliedRoles((prevRoles) => [...prevRoles, appliedCard]);
   };
 
   const filteredCards = cardsData.filter(
@@ -101,9 +105,11 @@ const ProjectList = ({card}) => {
       </div>
 
       {applied ? (
-        <AppliedProject onClose={handleCloseAppliedProject} appliedRoles={appliedRoles} card={card} />
+        <AppliedProject onClose={handleCloseAppliedProject} appliedRoles={appliedRoles} />
       ) : filteredCards.length > 0 ? (
-        filteredCards.map((card, index) => <Card key={index} card={card} />)
+        filteredCards.map((card, index) => (
+          <Card key={index} card={card} onConfirmApply={handleConfirmApply} />
+        ))
       ) : (
         <p>No projects match your search criteria.</p>
       )}

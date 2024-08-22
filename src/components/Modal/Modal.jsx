@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-const Modal = ({ isOpen, onClose, card,setIsModalOpen,onConfirm }) => {
+const Modal = ({ isOpen, onClose, card, setIsModalOpen, onConfirm }) => {
   if (!isOpen) return null;
 
   return (
@@ -12,13 +12,19 @@ const Modal = ({ isOpen, onClose, card,setIsModalOpen,onConfirm }) => {
             <span className="font-semibold">Work Title:</span> {card.title}
           </p>
           <p className="mb-2">
-            <span className="font-semibold">Estimated Hours to Complete:</span> {card.estimatedHours} hrs
+            <span className="font-semibold">Estimated Hours to Complete:</span>{" "}
+            {card.estimatedHours} hrs
           </p>
           <p className="mb-2">
-            <span className="font-semibold">Work Category:</span> {card.category}
+            <span className="font-semibold">Work Category:</span>{" "}
+            {card.category}
           </p>
           <p className="mb-2">
             <span className="font-semibold">Skills:</span> {card.skills}
+          </p>
+          <p className="mb-2">
+            <span className="font-semibold">Detailed Description:</span>{" "}
+            {card.details}
           </p>
           <p className="mb-2">
             <span className="font-semibold">Infy Points:</span> {card.points}
@@ -31,7 +37,10 @@ const Modal = ({ isOpen, onClose, card,setIsModalOpen,onConfirm }) => {
           >
             Close
           </button>
-          <button className="ml-2 bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-500" onClick={onConfirm}>
+          <button
+            className="ml-2 bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-500"
+            onClick={onConfirm}
+          >
             Confirm & Apply
           </button>
         </div>

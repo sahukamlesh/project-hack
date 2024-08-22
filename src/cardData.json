@@ -1,90 +1,98 @@
-[
-    {
-        "title": "Chatbot Development with Dialogflow",
-        "description": "Create a conversational chatbot using Dialogflow",
-        "createdBy": "frank.miller",
-        "estimatedHours": 140,
-        "category": "Chatbot",
-        "initiative": "AI Integration",
-        "skills": "Dialogflow+Node.js",
-        "points": 3300,
-        "status": "OPEN"
-    },
-    {
-        "title": "Serverless Architecture with AWS Lambda",
-        "description": "Build a serverless application using AWS Lambda",
-        "createdBy": "grace.taylor",
-        "estimatedHours": 110,
-        "category": "Cloud Computing",
-        "initiative": "Infrastructure",
-        "skills": "AWS Lambda+API Gateway",
-        "points": 3100,
-        "status": "IN PROGRESS"
-    },
-    {
-        "title": "Automated Testing with Selenium",
-        "description": "Implement automated testing scripts using Selenium",
-        "createdBy": "henry.martin",
-        "estimatedHours": 130,
-        "category": "Testing",
-        "initiative": "Quality Assurance",
-        "skills": "Selenium+Java",
-        "points": 2900,
-        "status": "CLOSED"
-    },
-    {
-        "title": "GraphQL API Development",
-        "description": "Develop a GraphQL API for data querying",
-        "createdBy": "isabella.garcia",
-        "estimatedHours": 160,
-        "category": "API Development",
-        "initiative": "Data Management",
-        "skills": "GraphQL+Node.js",
-        "points": 3400,
-        "status": "OPEN"
-    },
-    {
-        "title": "Real-time Analytics Dashboard",
-        "description": "Build a real-time analytics dashboard using WebSockets",
-        "createdBy": "jackson.johnson",
-        "estimatedHours": 170,
-        "category": "Analytics",
-        "initiative": "Data Insights",
-        "skills": "WebSockets+React",
-        "points": 3600,
-        "status": "IN PROGRESS"
-    },
-    {
-        "title": "Content Management System with Laravel",
-        "description": "Develop a CMS using Laravel for content management",
-        "createdBy": "karen.lee",
-        "estimatedHours": 200,
-        "category": "Web Development",
-        "initiative": "Content Solutions",
-        "skills": "Laravel+PHP",
-        "points": 4200,
-        "status": "OPEN"
-    },
-    {
-        "title": "API Rate Limiting Solution",
-        "description": "Implement rate limiting for APIs to prevent abuse",
-        "createdBy": "liam.wilson",
-        "estimatedHours": 90,
-        "category": "API Security",
-        "initiative": "Security Enhancements",
-        "skills": "Redis+Node.js",
-        "points": 2700,
-        "status": "CLOSED"
-    },
-    {
-        "title": "Interactive Map with Leaflet.js",
-        "description": "Create an interactive map application using Leaflet.js",
-        "createdBy": "maria.morris",
-        "estimatedHours": 130,
-        "category": "Geospatial",
-        "initiative": "Mapping Solutions",
-        "skills": "Leaflet.js+JavaScript",
-        "points": 3100,
-        "status": "IN PROGRESS"
-    }
-]
+ [
+        {
+            "title": "Chatbot Development with Dialogflow",
+            "description": "Create a conversational chatbot using Dialogflow",
+            "details": "This project involves building a highly interactive chatbot capable of understanding and responding to user queries. The chatbot will be integrated with a web platform and will utilize NLP capabilities.",
+            "createdBy": "frank.miller",
+            "estimatedHours": 140,
+            "category": "Chatbot",
+            "initiative": "AI Integration",
+            "skills": "Dialogflow+Node.js",
+            "points": 3300,
+            "status": "OPEN"
+        },
+        {
+            "title": "Serverless Architecture with AWS Lambda",
+            "description": "Build a serverless application using AWS Lambda",
+            "details": "Develop a scalable serverless architecture using AWS services. This project focuses on creating microservices that respond to API requests without the need for server management.",
+            "createdBy": "grace.taylor",
+            "estimatedHours": 110,
+            "category": "Cloud Computing",
+            "initiative": "Infrastructure",
+            "skills": "AWS Lambda+API Gateway",
+            "points": 3100,
+            "status": "IN PROGRESS"
+        },
+        {
+            "title": "Automated Testing with Selenium",
+            "description": "Implement automated testing scripts using Selenium",
+            "details": "Create a suite of automated tests for web applications using Selenium. The project aims to enhance the QA process by reducing manual testing efforts and ensuring consistent test execution.",
+            "createdBy": "henry.martin",
+            "estimatedHours": 130,
+            "category": "Testing",
+            "initiative": "Quality Assurance",
+            "skills": "Selenium+Java",
+            "points": 2900,
+            "status": "CLOSED"
+        },
+        {
+            "title": "GraphQL API Development",
+            "description": "Develop a GraphQL API for data querying",
+            "details": "Build a robust GraphQL API to enable efficient data querying and manipulation. This API will serve as a flexible and powerful interface for interacting with the application's data layer.",
+            "createdBy": "isabella.garcia",
+            "estimatedHours": 160,
+            "category": "API Development",
+            "initiative": "Data Management",
+            "skills": "GraphQL+Node.js",
+            "points": 3400,
+            "status": "OPEN"
+        },
+        {
+            "title": "Real-time Analytics Dashboard",
+            "description": "Build a real-time analytics dashboard using WebSockets",
+            "details": "Develop an interactive dashboard that visualizes data in real-time using WebSockets. The dashboard will provide insights into key performance metrics, updating dynamically as new data arrives.",
+            "createdBy": "jackson.johnson",
+            "estimatedHours": 170,
+            "category": "Analytics",
+            "initiative": "Data Insights",
+            "skills": "WebSockets+React",
+            "points": 3600,
+            "status": "IN PROGRESS"
+        },
+        {
+            "title": "Content Management System with Laravel",
+            "description": "Develop a CMS using Laravel for content management",
+            "details": "Create a user-friendly content management system (CMS) with Laravel, allowing users to easily manage and publish digital content. This project focuses on developing a secure, scalable, and intuitive platform.",
+            "createdBy": "karen.lee",
+            "estimatedHours": 200,
+            "category": "Web Development",
+            "initiative": "Content Solutions",
+            "skills": "Laravel+PHP",
+            "points": 4200,
+            "status": "OPEN"
+        },
+        {
+            "title": "API Rate Limiting Solution",
+            "description": "Implement rate limiting for APIs to prevent abuse",
+            "details": "Design and implement an API rate limiting solution using Redis and Node.js to protect APIs from overuse and abuse. This project aims to enhance security and ensure fair usage of API resources.",
+            "createdBy": "liam.wilson",
+            "estimatedHours": 90,
+            "category": "API Security",
+            "initiative": "Security Enhancements",
+            "skills": "Redis+Node.js",
+            "points": 2700,
+            "status": "CLOSED"
+        },
+        {
+            "title": "Interactive Map with Leaflet.js",
+            "description": "Create an interactive map application using Leaflet.js",
+            "details": "Develop an interactive map application using Leaflet.js, enabling users to explore geographical data with dynamic and responsive features. The project involves integrating various mapping services and data layers.",
+            "createdBy": "maria.morris",
+            "estimatedHours": 130,
+            "category": "Geospatial",
+            "initiative": "Mapping Solutions",
+            "skills": "Leaflet.js+JavaScript",
+            "points": 3100,
+            "status": "IN PROGRESS"
+        }
+    ]
