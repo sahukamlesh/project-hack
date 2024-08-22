@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Modal = ({ isOpen, onClose, card }) => {
+const Modal = ({ isOpen, onClose, card,setIsModalOpen,onConfirm }) => {
   if (!isOpen) return null;
 
   return (
@@ -31,7 +31,7 @@ const Modal = ({ isOpen, onClose, card }) => {
           >
             Close
           </button>
-          <button className="ml-2 bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-500">
+          <button className="ml-2 bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-500" onClick={onConfirm}>
             Confirm & Apply
           </button>
         </div>

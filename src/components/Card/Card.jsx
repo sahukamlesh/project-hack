@@ -4,6 +4,7 @@ import Modal from '../Modal/Modal';
 const Card = ({ card }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+
   const handleApplyClick = () => {
     setIsModalOpen(true);
   };
@@ -11,6 +12,9 @@ const Card = ({ card }) => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+  const handleconfirmModel = ()=>{
+    setIsModalOpen(false);
+  }
 
   return (
     <div className="max-w-5xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200 w-3/4 mb-4">
@@ -55,7 +59,7 @@ const Card = ({ card }) => {
       </div>
 
       {/* Modal Component */}
-      <Modal isOpen={isModalOpen} onClose={closeModal} card={card} />
+      <Modal isOpen={isModalOpen} onClose={closeModal} card={card} setIsModalOpen={setIsModalOpen} onConfirm={handleconfirmModel}/>
     </div>
   );
 };

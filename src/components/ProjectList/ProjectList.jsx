@@ -4,10 +4,11 @@ import SearchBar from "../SearchBar/SearchBar";
 import cardsData from "../../cardData.json";
 import AppliedProject from "../AppliedProjects/AppliedProjects";
 
-const ProjectList = () => {
+const ProjectList = ({card}) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState("ALL");
   const [applied, setApplied] = useState(false);
+  const [appliedRoles, setAppliedRoles] = useState([]);
 
   const handleStatusChange = (status) => {
     setStatusFilter(status);
@@ -100,7 +101,7 @@ const ProjectList = () => {
       </div>
 
       {applied ? (
-        <AppliedProject onClose={handleCloseAppliedProject} />
+        <AppliedProject onClose={handleCloseAppliedProject} appliedRoles={appliedRoles} card={card} />
       ) : filteredCards.length > 0 ? (
         filteredCards.map((card, index) => <Card key={index} card={card} />)
       ) : (
