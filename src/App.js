@@ -1,12 +1,12 @@
-import './App.css';
-import LoginPage from './components/PasswordLogin/LoginPage';
+import './App.css'
+import LoginPage from './components/PasswordLogin/LoginPage'
 
 function App() {
   return (
     <div className="App">
-     <LoginPage/>
+      <LoginPage />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

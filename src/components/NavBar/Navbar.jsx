@@ -1,17 +1,17 @@
-import React, { useContext } from 'react';
-import { useAuth } from '../../AuthContext';
-import { signOut } from 'firebase/auth';
-import { auth } from '../../firebase';
-import { useNavigate } from 'react-router-dom';
+import React from 'react'
+import { useAuth } from '../../AuthContext'
+import { signOut } from 'firebase/auth'
+import { auth } from '../../firebase'
+import { useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
-  const { userName } = useAuth();
-  const history = useNavigate();
+  const { userName } = useAuth()
+  const history = useNavigate()
   const handleClick = () => {
     signOut(auth).then((val) => {
-      history('/');
-    });
-  };
+      history('/')
+    })
+  }
 
   return (
     <nav className="bg-white shadow-md py-4">
@@ -48,7 +48,7 @@ const Navbar = () => {
         </ul>
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

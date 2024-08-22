@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-import Modal from '../Modal/Modal'; 
+import React, { useState } from 'react'
+import Modal from '../Modal/Modal'
 
 const Card = ({ card, onConfirmApply }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
   const handleApplyClick = () => {
-    setIsModalOpen(true);
-  };
+    setIsModalOpen(true)
+  }
 
   const closeModal = () => {
-    setIsModalOpen(false);
-  };
+    setIsModalOpen(false)
+  }
 
   const handleConfirmModel = () => {
-    onConfirmApply(card);
-    setIsModalOpen(false);
-  };
+    onConfirmApply(card)
+    setIsModalOpen(false)
+  }
 
   return (
     <div className="max-w-5xl mx-auto bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200 w-3/4 mb-4">
@@ -23,9 +23,7 @@ const Card = ({ card, onConfirmApply }) => {
         {/* Left Side */}
         <div className="w-[50%] pr-6 border-r border-gray-300">
           <div className="flex justify-between items-center">
-            <h2 className="text-xl font-semibold text-blue-700">
-              {card.title}
-            </h2>
+            <h2 className="text-xl font-semibold text-blue-700">{card.title}</h2>
             <span className="text-sm font-semibold text-green-500 flex items-center">
               {card.status}
               {card.status === 'OPEN' && (
@@ -33,20 +31,30 @@ const Card = ({ card, onConfirmApply }) => {
               )}
             </span>
           </div>
-          <p className="text-gray-700 mt-2">
-            {card.description}
-          </p>
+          <p className="text-gray-700 mt-2">{card.description}</p>
         </div>
 
         {/* Right Side */}
         <div className="w-1/3 pl-6 justify-center text-left mx-12">
-          <p className="text-sm text-gray-600"><span className="font-semibold">Created by:</span> {card.createdBy}</p>
-          <p className="text-sm text-gray-600"><span className="font-semibold">Estimated:</span> {card.estimatedHours} hrs</p>
-          <p className="text-sm text-gray-600"><span className="font-semibold">Category:</span> {card.category}</p>
-          <p className="text-sm text-gray-600"><span className="font-semibold">Initiative:</span> {card.initiative}</p>
-          <p className="text-sm text-gray-600"><span className="font-semibold">Skills:</span> {card.skills}</p>
+          <p className="text-sm text-gray-600">
+            <span className="font-semibold">Created by:</span> {card.createdBy}
+          </p>
+          <p className="text-sm text-gray-600">
+            <span className="font-semibold">Estimated:</span> {card.estimatedHours}{' '}
+            hrs
+          </p>
+          <p className="text-sm text-gray-600">
+            <span className="font-semibold">Category:</span> {card.category}
+          </p>
+          <p className="text-sm text-gray-600">
+            <span className="font-semibold">Initiative:</span> {card.initiative}
+          </p>
+          <p className="text-sm text-gray-600">
+            <span className="font-semibold">Skills:</span> {card.skills}
+          </p>
           <p className="text-sm text-gray-600 mt-4">
-            <span className="font-semibold">Infy Points you can earn:</span> {card.points}
+            <span className="font-semibold">Infy Points you can earn:</span>{' '}
+            {card.points}
           </p>
           <div className="mt-6">
             <button
@@ -60,9 +68,14 @@ const Card = ({ card, onConfirmApply }) => {
       </div>
 
       {/* Modal Component */}
-      <Modal isOpen={isModalOpen} onClose={closeModal} card={card} onConfirm={handleConfirmModel}/>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        card={card}
+        onConfirm={handleConfirmModel}
+      />
     </div>
-  );
-};
+  )
+}
 
-export default Card;
+export default Card

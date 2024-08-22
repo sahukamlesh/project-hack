@@ -1,42 +1,42 @@
-import React, { useState } from 'react';
-import { db } from '../../firebase';
-import { collection, addDoc } from 'firebase/firestore';
-import Card from '../Card/Card';
-import SearchBar from '../SearchBar/SearchBar';
-import cardsData from '../../cardData.json';
-import AppliedProject from '../AppliedProjects/AppliedProjects';
-import { useAuth } from '../../AuthContext';
+import React, { useState } from 'react'
+import { db } from '../../firebase'
+import { collection, addDoc } from 'firebase/firestore'
+import Card from '../Card/Card'
+import SearchBar from '../SearchBar/SearchBar'
+import cardsData from '../../cardData.json'
+import AppliedProject from '../AppliedProjects/AppliedProjects'
+import { useAuth } from '../../AuthContext'
 
 const ProjectList = () => {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [statusFilter, setStatusFilter] = useState('ALL');
-  const [applied, setApplied] = useState(false);
-  const [appliedRoles, setAppliedRoles] = useState([]);
-  const { user,userName } = useAuth();
+  const [searchQuery, setSearchQuery] = useState('')
+  const [statusFilter, setStatusFilter] = useState('ALL')
+  const [applied, setApplied] = useState(false)
+  const [appliedRoles, setAppliedRoles] = useState([])
+  const { user, userName } = useAuth()
   const handleStatusChange = (status) => {
-    setStatusFilter(status);
-    setApplied(false);
-  };
+    setStatusFilter(status)
+    setApplied(false)
+  }
 
   const handleSearchQueryChange = (query) => {
-    setSearchQuery(query);
-    setApplied(false);
-  };
+    setSearchQuery(query)
+    setApplied(false)
+  }
 
   const handleClickAppliedProject = () => {
-    setApplied(true);
-  };
+    setApplied(true)
+  }
 
   const handleCloseAppliedProject = () => {
-    setApplied(false);
-  };
+    setApplied(false)
+  }
 
   const handleConfirmApply = async (appliedCard) => {
-    console.log("appliedCard",appliedCard)
+    console.log('appliedCard', appliedCard)
     try {
-      setAppliedRoles(prevRoles => [...prevRoles, appliedCard]);
+      setAppliedRoles((prevRoles) => [...prevRoles, appliedCard])
       if (!user) {
-        throw new Error('User not authenticated');
+        throw new Error('User not authenticated')
       }
       await addDoc(collection(db, 'applications'), {
         title: appliedCard.title,
@@ -44,21 +44,21 @@ const ProjectList = () => {
         skills: appliedCard.skills,
         points: appliedCard.points,
         userId: user.uid,
-        userName : userName,
-        status: 'PENDING'
-      });
+        userName: userName,
+        status: 'PENDING',
+      })
     } catch (error) {
-      console.error('Error saving applied project:', error);
+      console.error('Error saving applied project:', error)
     }
-  };
+  }
 
   const filteredCards = cardsData.filter(
     (card) =>
-      (statusFilter === "ALL" || card.status === statusFilter) &&
+      (statusFilter === 'ALL' || card.status === statusFilter) &&
       (card.skills.toLowerCase().includes(searchQuery.toLowerCase()) ||
         card.points.toString().includes(searchQuery) ||
-        card.title.toLowerCase().includes(searchQuery.toLowerCase()))
-  );
+        card.title.toLowerCase().includes(searchQuery.toLowerCase())),
+  )
 
   return (
     <div>
@@ -66,21 +66,21 @@ const ProjectList = () => {
         <div className="flex-1 ml-[10%]">
           <SearchBar
             searchQuery={searchQuery}
-            setSearchQuery={handleSearchQueryChange} 
+            setSearchQuery={handleSearchQueryChange}
           />
         </div>
 
         <div className="flex items-center space-x-2 mr-[20%]">
           <div className="flex flex-wrap justify-center">
             <button
-              className={`bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-full ${statusFilter === "OPEN" ? "bg-green-500 text-white" : ""}`}
-              onClick={() => handleStatusChange("OPEN")}
+              className={`bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-full ${statusFilter === 'OPEN' ? 'bg-green-500 text-white' : ''}`}
+              onClick={() => handleStatusChange('OPEN')}
             >
               Open
             </button>
             <button
-              className={`bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-full ${statusFilter === "CLOSED" ? "bg-red-500 text-white" : ""}`}
-              onClick={() => handleStatusChange("CLOSED")}
+              className={`bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-full ${statusFilter === 'CLOSED' ? 'bg-red-500 text-white' : ''}`}
+              onClick={() => handleStatusChange('CLOSED')}
             >
               Closed
             </button>
@@ -111,7 +111,10 @@ const ProjectList = () => {
       </div>
 
       {applied ? (
-        <AppliedProject onClose={handleCloseAppliedProject} appliedRoles={appliedRoles} />
+        <AppliedProject
+          onClose={handleCloseAppliedProject}
+          appliedRoles={appliedRoles}
+        />
       ) : filteredCards.length > 0 ? (
         filteredCards.map((card, index) => (
           <Card key={index} card={card} onConfirmApply={handleConfirmApply} />
@@ -120,7 +123,7 @@ const ProjectList = () => {
         <p>No projects match your search criteria.</p>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default ProjectList;
+export default ProjectList

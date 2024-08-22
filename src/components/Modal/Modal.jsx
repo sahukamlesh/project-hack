@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 
 const Modal = ({ isOpen, onClose, card, setIsModalOpen, onConfirm }) => {
-  if (!isOpen) return null;
+  if (!isOpen) return null
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
@@ -12,18 +12,17 @@ const Modal = ({ isOpen, onClose, card, setIsModalOpen, onConfirm }) => {
             <span className="font-semibold">Work Title:</span> {card.title}
           </p>
           <p className="mb-2">
-            <span className="font-semibold">Estimated Hours to Complete:</span>{" "}
+            <span className="font-semibold">Estimated Hours to Complete:</span>{' '}
             {card.estimatedHours} hrs
           </p>
           <p className="mb-2">
-            <span className="font-semibold">Work Category:</span>{" "}
-            {card.category}
+            <span className="font-semibold">Work Category:</span> {card.category}
           </p>
           <p className="mb-2">
             <span className="font-semibold">Skills:</span> {card.skills}
           </p>
           <p className="mb-2">
-            <span className="font-semibold">Detailed Description:</span>{" "}
+            <span className="font-semibold">Detailed Description:</span>{' '}
             {card.details}
           </p>
           <p className="mb-2">
@@ -46,7 +45,7 @@ const Modal = ({ isOpen, onClose, card, setIsModalOpen, onConfirm }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Modal;
+export default Modal

@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef } from 'react'
 
 const AppliedProject = forwardRef(({ onClose, appliedRoles }, ref) => {
   return (
@@ -25,7 +25,7 @@ const AppliedProject = forwardRef(({ onClose, appliedRoles }, ref) => {
         )}
       </div>
     </div>
-  );
-});
+  )
+})
 
-export default AppliedProject;
+export default AppliedProject
