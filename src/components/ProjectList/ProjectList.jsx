@@ -12,8 +12,7 @@ const ProjectList = () => {
   const [statusFilter, setStatusFilter] = useState('ALL');
   const [applied, setApplied] = useState(false);
   const [appliedRoles, setAppliedRoles] = useState([]);
-  const { user } = useAuth();
-  console.log('userName',user)
+  const { user,userName } = useAuth();
   const handleStatusChange = (status) => {
     setStatusFilter(status);
     setApplied(false);
@@ -33,23 +32,21 @@ const ProjectList = () => {
   };
 
   const handleConfirmApply = async (appliedCard) => {
+    console.log("appliedCard",appliedCard)
     try {
       setAppliedRoles(prevRoles => [...prevRoles, appliedCard]);
-       // Get the auth object from the useAuth hook
-      
       if (!user) {
         throw new Error('User not authenticated');
       }
-      // Save the applied project to Firestore
       await addDoc(collection(db, 'applications'), {
         title: appliedCard.title,
         estimatedHours: appliedCard.estimatedHours,
         skills: appliedCard.skills,
         points: appliedCard.points,
-        userId: user.uid, // Use the actual user ID from the auth context
+        userId: user.uid,
+        userName : userName,
         status: 'PENDING'
       });
-      // Update local state to reflect applied projects
     } catch (error) {
       console.error('Error saving applied project:', error);
     }
@@ -74,45 +71,31 @@ const ProjectList = () => {
         </div>
 
         <div className="flex items-center space-x-2 mr-[20%]">
-          <div
-            className={`flex items-center justify-center w-10 h-10 rounded-full cursor-pointer text-sm ${
-              statusFilter === "OPEN"
-                ? "bg-blue-500 text-white"
-                : "bg-gray-200 text-gray-700"
-            }`}
-            onClick={() => handleStatusChange("OPEN")}
-          >
-            Open
-          </div>
-          <div
-            className={`flex items-center justify-center w-10 h-10 rounded-full cursor-pointer text-sm ${
-              statusFilter === "CLOSED"
-                ? "bg-red-500 text-red"
-                : "bg-gray-200 text-gray-700"
-            }`}
-            onClick={() => handleStatusChange("CLOSED")}
-          >
-            Closed
-          </div>
-          <div
-            className={`flex items-center justify-center w-10 h-10 rounded-full cursor-pointer text-sm ${
-              statusFilter === 'IN PROGRESS'
-                ? 'bg-blue-500 text-white'
-                : 'bg-gray-200 text-gray-700'
-            }`}
-            onClick={() => handleStatusChange('IN PROGRESS')}
-          >
-            In-progress
-          </div>
-          <div
-            className={`flex items-center justify-center w-10 h-10 rounded-full cursor-pointer text-sm ${
-              statusFilter === 'ALL'
-                ? 'bg-blue-500 text-white'
-                : 'bg-gray-200 text-gray-700'
-            }`}
-            onClick={() => handleStatusChange('ALL')}
-          >
-            All
+          <div className="flex flex-wrap justify-center">
+            <button
+              className={`bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-full ${statusFilter === "OPEN" ? "bg-green-500 text-white" : ""}`}
+              onClick={() => handleStatusChange("OPEN")}
+            >
+              Open
+            </button>
+            <button
+              className={`bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-full ${statusFilter === "CLOSED" ? "bg-red-500 text-white" : ""}`}
+              onClick={() => handleStatusChange("CLOSED")}
+            >
+              Closed
+            </button>
+            <button
+              className={`bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-full ${statusFilter === 'IN PROGRESS' ? 'bg-yellow-500 text-white' : ''}`}
+              onClick={() => handleStatusChange('IN PROGRESS')}
+            >
+              In-progress
+            </button>
+            <button
+              className={`bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-full ${statusFilter === 'ALL' ? 'bg-blue-500 text-white' : ''}`}
+              onClick={() => handleStatusChange('ALL')}
+            >
+              All
+            </button>
           </div>
         </div>
 

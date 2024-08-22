@@ -61,44 +61,65 @@ const RegisterPage = () => {
   };
 
   return (
-    <div>
-      <div className="row">
-        <div
-          className={login === false ? "activeColor" : "pointer"}
-          onClick={() => setLogin(false)}
-        >
-          Signup
+    <div className="h-screen flex justify-center items-center bg-gray-800">
+      <div className="max-w-md w-full bg-gray-900 rounded-lg shadow-md p-4">
+        <div className="flex justify-center mb-4">
+          <button
+            className={`${
+              login ? "bg-gray-700" : "bg-orange-500 text-white"
+            } py-2 px-4 rounded`}
+            onClick={() => setLogin(false)}
+          >
+            Signup
+          </button>
+          <button
+            className={`${
+              login ? "bg-orange-500 text-white" : "bg-gray-700"
+            } py-2 px-4 rounded`}
+            onClick={() => setLogin(true)}
+          >
+            Signin
+          </button>
         </div>
-        <div
-          className={login === true ? "activeColor" : "pointer"}
-          onClick={() => setLogin(true)}
-        >
-          SignIn
-        </div>
-      </div>
-      <h3>{login ? "SignIn" : "SignUp"}</h3>
-
-      <div>
-        {isLoading ? (
-          <h1>Loading....</h1>
-        ) : (
-          <form onSubmit={(e) => handleSubmit(e, login ? "signin" : "signup")}>
-            <div>
-              {!login && (
-                <input type="text" name="name" placeholder="Enter your name " />
-              )}
-            </div>
-            <input type="email" name="email" placeholder="Enter Your Email " />
-            <br />
+        <h3 className="text-2xl font-bold mb-4 text-white">{login ? "Signin" : "Signup"}</h3>
+        <form onSubmit={(e) => handleSubmit(e, login ? "signin" : "signup")}>
+          <div className="mb-4">
+            {!login && (
+              <input
+                type="text"
+                name="name"
+                placeholder="Enter your name"
+                className="w-full p-2 pl-10 text-sm text-black-400"
+              />
+            )}
+          </div>
+          <div className="mb-4">
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter Your Email"
+              className="w-full p-2 pl-10 text-sm text-black-400"
+            />
+          </div>
+          <div className="mb-4">
             <input
               type="password"
               name="password"
               placeholder="Enter Your Password"
-              autoComplete="on"
+              className="w-full p-2 pl-10 text-sm text-black-400"
             />
-            <br />
-            <button>{login ? "SignIn" : "SignUp"}</button>
-          </form>
+          </div>
+          <button
+            className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded"
+            type="submit"
+          >
+            {login ? "Signin" : "Signup"}
+          </button>
+        </form>
+        {isLoading && (
+          <div className="text-center mt-4">
+            <h1 className="text-white">Loading...</h1>
+          </div>
         )}
       </div>
     </div>

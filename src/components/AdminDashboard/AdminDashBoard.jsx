@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { db } from '../../firebase';
 import { collection, getDocs, updateDoc, doc } from 'firebase/firestore';
+import Layout from '../Layout';
 
 const AdminDashboard = () => {
   const [applications, setApplications] = useState([]);
@@ -49,20 +50,34 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div>
-      <h1>Admin Dashboard</h1>
-      <ul>
-        {applications.map(app => (
-          <li key={app.id}>
-            <p>Project ID: {app.projectId}</p>
-            <p>User ID: {app.userId}</p>
-            <p>Status: {app.status}</p>
-            <button onClick={() => handleApprove(app.id)}>Approve</button>
-            <button onClick={() => handleReject(app.id)}>Reject</button>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Layout>
+      <div className="container mx-auto p-4">
+        <h1 className="text-3xl font-bold mb-8 text-center ">Admin Dashboard</h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
+          {applications.map(app => (
+            <div key={app.id} className="bg-white rounded shadow-md p-4">
+              <h2 className="text-lg font-bold mb-2">{app.title}</h2>
+              <p className="text-gray-600 mb-2">User Name: {app.userName}</p>
+              <p className="text-gray-600 mb-2">Status: {app.status}</p>
+              <div className="flex justify-end">
+                <button
+                  onClick={() => handleApprove(app.id)}
+                  className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                >
+                  Approve
+                </button>
+                <button
+                  onClick={() => handleReject(app.id)}
+                  className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2"
+                >
+                  Reject
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Layout>
   );
 };
 
