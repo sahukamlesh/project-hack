@@ -7,6 +7,8 @@ import {
 import { useNavigate } from 'react-router-dom'
 import { setDoc, doc, getDoc } from 'firebase/firestore'
 import { useAuth } from '../../AuthContext'
+import { toast, ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import './RegisterPage.css'
 
 const RegisterPage = () => {
@@ -20,6 +22,11 @@ const RegisterPage = () => {
     const email = e.target.email.value
     const password = e.target.password.value
     const name = e.target.name?.value
+
+    if (type === 'signup' && password.length < 6) {
+      toast.error('Please enter a password with at least 6 characters')
+      return
+    }
 
     try {
       setIsLoading(true)
@@ -123,6 +130,7 @@ const RegisterPage = () => {
             <h1 className="text-white">Loading...</h1>
           </div>
         )}
+        <ToastContainer position="top-right" />
       </div>
     </div>
   )
