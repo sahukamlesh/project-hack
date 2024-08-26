@@ -6,7 +6,12 @@
 --------
 
 To set up the project, run the following command in your terminal:
-
+```bash
+npm install
+```
+```bash
+npm run start
+```
 This will install all the necessary dependencies for the project.
 
 ## Running the Project
@@ -21,12 +26,11 @@ This will start the development server and make the project available at `http:/
 
 To access the project, you can use the following credentials:
 
-### Admin
-
+### Admin --- to signin as admin
 * Email: `admin@example.com`
 * Password: `123456`
 
-### User
+### User --- to signin as user
 
 * Email: `kamlesh1@mail.com`
 * Password: `123456`
